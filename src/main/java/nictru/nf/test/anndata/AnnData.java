@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 
 public class AnnData extends HdfFile {
     final DataFrame obs;
-    final DataFrame var;
+    //final DataFrame var;
 
     final String[] obs_names;
-    final String[] var_names;
+    //final String[] var_names;
 
     final int n_obs;
-    final int n_vars;
+    //final int n_vars;
 
     public AnnData(Path path) {
         super(path);
@@ -29,13 +29,13 @@ public class AnnData extends HdfFile {
         }
 
         this.obs = new DataFrame((GroupImpl) this.getChild("obs"));
-        this.var = new DataFrame((GroupImpl) this.getChild("var"));
+        //this.var = new DataFrame((GroupImpl) this.getChild("var"));
 
         this.obs_names = this.obs.rownames;
-        this.var_names = this.var.rownames;
+        //this.var_names = this.var.rownames;
 
         this.n_obs = this.obs.size;
-        this.n_vars = this.var.size;
+        //this.n_vars = this.var.size;
     }
 
 
@@ -46,7 +46,7 @@ public class AnnData extends HdfFile {
     public static void main(String[] args) {
         AnnData annData = new AnnData(Path.of("merged.h5ad"));
         System.out.println(annData.n_obs);
-        System.out.println(annData.n_vars);
+        //System.out.println(annData.n_vars);
         annData.close();
     }
 }
