@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
+
 public class AnnData extends HdfFile {
     final DataFrame obs;
     final DataFrame var;
