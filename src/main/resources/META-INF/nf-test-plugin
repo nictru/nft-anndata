@@ -1,0 +1,5 @@
+moduleName=nft-anndata
+moduleVersion=0.1.0
+moduleAuthors=Nico Trummer
+extensionMethods=nictru.nf.test.anndata.Methods
+extensionClasses=nictru.nf.test.anndata.PathExtension

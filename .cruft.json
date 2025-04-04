@@ -1,0 +1,29 @@
+{
+  "template": "https://github.com/nvnieuwk/cookiecutter-nftest-plugin",
+  "commit": "25e009a9f88eb3dd628d6658355802bb12b0108a",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "plugin_name": "nft-anndata",
+      "plugin_slug": "nft-anndata",
+      "description": "nf-test plugin for the AnnData file format",
+      "github_username": "nictru",
+      "github_url": "https://github.com/nictru/nft-anndata",
+      "github_default_branch": "main",
+      "version": "0.1.0",
+      "license": "MIT",
+      "mkdocs": true,
+      "docsite_url": "https://nictru.github.io/nft-anndata",
+      "author_name": "Nico Trummer",
+      "release_date": "2025-04-02",
+      "year": "2025",
+      "_extensions": [
+        "jinja2_time.TimeExtension",
+        "jinja2_strcase.StrcaseExtension"
+      ],
+      "_template": "https://github.com/nvnieuwk/cookiecutter-nftest-plugin",
+      "_commit": "25e009a9f88eb3dd628d6658355802bb12b0108a"
+    }
+  },
+  "directory": null
+}
