@@ -19,6 +19,11 @@ public class AnnData extends HdfFile {
     final int n_vars;
 
     final Set<String> layers;
+    final Set<String> obsm;
+    final Set<String> varm;
+    final Set<String> obsp;
+    final Set<String> varp;
+    final Set<String> uns;
 
     public AnnData(Path path) {
         super(path);
@@ -39,7 +44,12 @@ public class AnnData extends HdfFile {
         this.n_obs = this.obs.size;
         this.n_vars = this.var.size;
 
-        this.layers = this.getLayers();
+        this.layers = this.getFields("layers");
+        this.obsm = this.getFields("obsm");
+        this.varm = this.getFields("varm");
+        this.obsp = this.getFields("obsp");
+        this.varp = this.getFields("varp");
+        this.uns = this.getFields("uns");
     }
 
 
@@ -47,14 +57,14 @@ public class AnnData extends HdfFile {
         return this.getChildren().keySet();
     }
 
-    private Set<String> getLayers() {
-        GroupImpl layers = (GroupImpl) this.getChild("layers");
-        return layers.getChildren().keySet();
+    private Set<String> getFields(String name) {
+        GroupImpl group = (GroupImpl) this.getChild(name);
+        return group.getChildren().keySet();
     }
 
     public static void main(String[] args) {
         AnnData annData = new AnnData(Path.of("merged.h5ad"));
-        System.out.println(annData.layers);
+        System.out.println(annData.obsm);
         annData.close();
     }
 }
