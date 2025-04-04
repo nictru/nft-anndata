@@ -45,7 +45,9 @@ public class AnnData extends HdfFile {
 
     public static void main(String[] args) {
         AnnData annData = new AnnData(Path.of("merged.h5ad"));
-        System.out.println(annData.n_obs);
+        System.out.println(annData.obs.get("chemistry").n_unique());
+        System.out.println(annData.obs.get("n_genes_by_counts").n_unique());
+        System.out.println(annData.obs.get("label").n_unique());
         //System.out.println(annData.n_vars);
         annData.close();
     }
