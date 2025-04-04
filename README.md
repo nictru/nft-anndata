@@ -11,4 +11,4 @@ nf-test plugin for the AnnData file format
     - Get row names
     - Get unique values per column
     - Get number of unique values per column
-- Get names of available layers
+- Get names of available fields in `layers`, `obsm`, `varm`, `obsp`, `varp`
