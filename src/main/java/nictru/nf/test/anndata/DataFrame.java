@@ -3,7 +3,7 @@ package nictru.nf.test.anndata;
 import io.jhdf.GroupImpl;
 import io.jhdf.dataset.ContiguousDatasetImpl;
 
-public class DataFrame {
+public class DataFrame implements MatrixLike {
     final String[] colnames;
     final String[] rownames;
     final int size;
@@ -29,5 +29,15 @@ public class DataFrame {
 
     public DataFrameColumn get(String name) {
         return new DataFrameColumn(this.group, name);
+    }
+
+    @Override
+    public int getRowCount() {
+        return this.size;
+    }
+
+    @Override
+    public int getColumnCount() {
+        return this.colnames.length;
     }
 }

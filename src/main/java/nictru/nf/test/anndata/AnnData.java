@@ -18,12 +18,11 @@ public class AnnData extends HdfFile {
     final int n_obs;
     final int n_vars;
 
-    final Set<String> layers;
-    final Set<String> obsm;
-    final Set<String> varm;
-    final Set<String> obsp;
-    final Set<String> varp;
-    final Set<String> uns;
+    final Matrices layers;
+    final Matrices obsm;
+    final Matrices varm;
+    final Matrices obsp;
+    final Matrices varp;
 
     public AnnData(Path path) {
         super(path);
@@ -44,12 +43,11 @@ public class AnnData extends HdfFile {
         this.n_obs = this.obs.size;
         this.n_vars = this.var.size;
 
-        this.layers = this.getFields("layers");
-        this.obsm = this.getFields("obsm");
-        this.varm = this.getFields("varm");
-        this.obsp = this.getFields("obsp");
-        this.varp = this.getFields("varp");
-        this.uns = this.getFields("uns");
+        this.layers = this.getMatrices("layers");
+        this.obsm = this.getMatrices("obsm");
+        this.varm = this.getMatrices("varm");
+        this.obsp = this.getMatrices("obsp");
+        this.varp = this.getMatrices("varp");
     }
 
 
@@ -57,9 +55,9 @@ public class AnnData extends HdfFile {
         return this.getChildren().keySet();
     }
 
-    private Set<String> getFields(String name) {
+    private Matrices getMatrices(String name) {
         GroupImpl group = (GroupImpl) this.getChild(name);
-        return group.getChildren().keySet();
+        return new Matrices(group);
     }
 
     public static void main(String[] args) {
