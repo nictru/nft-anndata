@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jar
-          path: target/
+          path: target/nft-anndata-*.jar
 
       - name: Clean up
         if: always()
@@ -68,5 +68,5 @@ jobs:
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
         with:
-          files: target/*.jar
+          files: target/nft-anndata-*.jar
 
