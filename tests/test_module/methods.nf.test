@@ -22,17 +22,26 @@ nextflow_process {
             def filename = process.out.h5ad.get(0)
             def obs_cols = ['louvain', 'n_counts', 'n_genes', 'percent_mito']
             with(anndata(filename)){
-                assert obs.colnames == obs_cols
-                assert !("hello" in obs.colnames)
-                assert "louvain" in obs.colnames
                 assert "counts" in layers
                 assert !("raw" in layers)
                 assert "X_umap" in obsm
                 assert !("X_scvi" in obsm)
                 assert "distances" in obsp
                 assert "PCs" in varm
-                assert "n_cells" in var.colnames
                 assert "neighbors" in uns
+
+                assert obs.colnames == obs_cols
+                assert !("hello" in obs.colnames)
+                assert "louvain" in obs.colnames
+                assert "TTTCGAACTCTCAT-1" in obs.rownames
+                assert "n_cells" in var.colnames
+                assert "PCNA" in var.rownames
+
+                assert "B cells" in obs.get("louvain").unique
+                assert !("B cell" in obs.get("louvain").unique)
+
+                assert obs.get("n_genes").data.every { it >= 100 }
+                assert obs.get("percent_mito").data.every { it < 0.5 }
             }
 
             with(anndata(path(filename))) {
