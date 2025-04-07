@@ -1,5 +1,7 @@
 package nictru.nf.test.anndata;
 
+import java.util.Arrays;
+
 import io.jhdf.GroupImpl;
 import io.jhdf.dataset.ContiguousDatasetImpl;
 
@@ -8,7 +10,6 @@ public class DataFrame {
     final String[] rownames;
     final int size;
     final GroupImpl group;
-
 
     public DataFrame(GroupImpl group) {
         this.colnames = getColumnNames(group);
@@ -24,6 +25,10 @@ public class DataFrame {
 
     private String[] getRowNames(GroupImpl group) {
         ContiguousDatasetImpl index = (ContiguousDatasetImpl) group.getChild("_index");
+        if (index == null) {
+            throw new IllegalArgumentException("Index not found in group: " + group.getName()
+                    + ". This is probably because the AnnData object has a named index, which is not currently supported by nft-anndata.");
+        }
         return (String[]) index.getData();
     }
 
