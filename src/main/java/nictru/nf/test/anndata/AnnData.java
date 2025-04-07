@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class AnnData extends HdfFile {
     final DataFrame obs;
@@ -25,12 +28,16 @@ public class AnnData extends HdfFile {
     final Set<String> varp;
     final Set<String> uns;
 
+    private final String[] expectedFields = { "X", "layers", "obs", "var", "obsm", "varm", "obsp", "varp", "uns" };
+
+    private final Map<String, Set<String>> fieldObjects;
+
     public AnnData(Path path) {
         super(path);
 
         Set<String> fields = this.getFields();
-        String[] expectedFields = {"X", "layers", "obs", "var", "obsm", "varm", "obsp", "varp", "uns"};
-        List<String> missingFields = Arrays.stream(expectedFields).filter(field -> !fields.contains(field)).collect(Collectors.toList());
+        List<String> missingFields = Arrays.stream(expectedFields).filter(field -> !fields.contains(field))
+                .collect(Collectors.toList());
         if (!missingFields.isEmpty()) {
             throw new IllegalArgumentException("Missing fields: " + missingFields);
         }
@@ -50,8 +57,18 @@ public class AnnData extends HdfFile {
         this.obsp = this.getFields("obsp");
         this.varp = this.getFields("varp");
         this.uns = this.getFields("uns");
-    }
 
+        this.fieldObjects = Map.of(
+                "layers", this.layers,
+                "obsm", this.obsm,
+                "varm", this.varm,
+                "obsp", this.obsp,
+                "varp", this.varp,
+                "uns", this.uns,
+                "obs", new HashSet<>(Arrays.asList(this.obs.colnames)),
+                "var", new HashSet<>(Arrays.asList(this.var.colnames))
+            );
+    }
 
     private Set<String> getFields() {
         return this.getChildren().keySet();
@@ -62,9 +79,27 @@ public class AnnData extends HdfFile {
         return group.getChildren().keySet();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("AnnData object with n_obs × n_vars = ");
+        sb.append(this.n_obs).append(" × ").append(this.n_vars).append("\n");
+
+        List<String> fieldStrings = this.fieldObjects.entrySet().stream()
+                .filter(entry -> !entry.getValue().isEmpty())
+                .map(entry -> "\t" + entry.getKey() + ": "
+                        + String.join(", ",
+                                entry.getValue().stream().map(v -> "'" + v + "'").collect(Collectors.toList())))
+                .collect(Collectors.toList());
+
+        sb.append(String.join("\n", fieldStrings));
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         AnnData annData = new AnnData(Path.of("tests/pbmc3k_processed.h5ad"));
-        System.out.println(annData.obsm);
+        System.out.println(annData);
         annData.close();
     }
 }
