@@ -23,6 +23,16 @@ nextflow_process {
             def obs_cols = ['louvain', 'n_counts', 'n_genes', 'percent_mito']
             with(anndata(filename)){
                 assert obs.colnames == obs_cols
+                assert !("hello" in obs.colnames)
+                assert "louvain" in obs.colnames
+                assert "counts" in layers
+                assert !("raw" in layers)
+                assert "X_umap" in obsm
+                assert !("X_scvi" in obsm)
+                assert "distances" in obsp
+                assert "PCs" in varm
+                assert "n_cells" in var.colnames
+                assert "neighbors" in uns
             }
 
             with(anndata(path(filename))) {
