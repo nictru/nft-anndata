@@ -63,7 +63,7 @@ public class AnnData extends HdfFile {
     }
 
     public static void main(String[] args) {
-        AnnData annData = new AnnData(Path.of("merged.h5ad"));
+        AnnData annData = new AnnData(Path.of("tests/pbmc3k_processed.h5ad"));
         System.out.println(annData.obsm);
         annData.close();
     }

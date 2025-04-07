@@ -1,8 +1,8 @@
 nextflow_process {
 
-    name "Test Process TEST_MODULE"
+    name "Test Process COPY_H5AD"
     script "./main.nf"
-    process "TEST_MODULE"
+    process "COPY_H5AD"
 
     tag "test"
 
@@ -12,16 +12,17 @@ nextflow_process {
             process {
                 """
                 input[0] = Channel.of(
-                    file('../pbmc3k_processed.h5ad')
+                    file('${projectDir}/tests/pbmc3k_processed.h5ad')
                 )
                 """
             }
         }
 
         then {
-            // TODO write your assertions
+            def filename = process.out.h5ad.get(0)
+            with(anndata(filename)){
+
+            }
         }
-
     }
-
 }

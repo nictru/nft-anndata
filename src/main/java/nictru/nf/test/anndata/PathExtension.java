@@ -1,4 +1,5 @@
 package nictru.nf.test.anndata;
+import java.nio.file.Path;
 
 /*
  * Add your custom extensions to the path() method
@@ -7,9 +8,11 @@ package nictru.nf.test.anndata;
  */
 
 public class PathExtension {
-
-	public static void hello() {
-		System.out.println("Hello from nft-anndata");
+	public static AnnData anndata(String path) {
+		return new AnnData(Path.of(path));
 	}
 
+	public static AnnData anndata(Path path) {
+		return new AnnData(path);
+	}
 }
