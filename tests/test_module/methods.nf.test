@@ -20,8 +20,17 @@ nextflow_process {
 
         then {
             def filename = process.out.h5ad.get(0)
+            def obs_cols = ['louvain', 'n_counts', 'n_genes', 'percent_mito']
             with(anndata(filename)){
+                assert obs.colnames == obs_cols
+            }
 
+            with(anndata(path(filename))) {
+                assert obs.colnames == obs_cols
+            }
+
+            with(path(filename).anndata()) {
+                assert obs.colnames == obs_cols
             }
         }
     }
