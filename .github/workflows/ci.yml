@@ -6,9 +6,12 @@ on:
   merge_group:
     types: [checks_requested]
     branches: [main]
+  release:
+    types: [published]
 
 jobs:
   test:
+    name: Test plugin
     runs-on: ubuntu-latest
     strategy:
       matrix: 
@@ -37,7 +40,30 @@ jobs:
         run: |
           ./test.sh
 
+      - name: Upload jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: jar
+          path: target/
+
       - name: Clean up
         if: always()
         run: |
           sudo rm -rf /home/ubuntu/tests/
+
+  publish:
+    name: Publish plugin
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: jar
+          path: target/
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/*.jar
+
