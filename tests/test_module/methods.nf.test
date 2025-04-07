@@ -12,7 +12,7 @@ nextflow_process {
             process {
                 """
                 input[0] = Channel.of(
-                    // TODO add your test data
+                    file('../pbmc3k_processed.h5ad')
                 )
                 """
             }
