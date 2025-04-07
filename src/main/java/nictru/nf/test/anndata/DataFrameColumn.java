@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 import io.jhdf.GroupImpl;
 import io.jhdf.dataset.ContiguousDatasetImpl;
+
 public class DataFrameColumn {
     final Object[] data;
 
@@ -21,6 +22,10 @@ public class DataFrameColumn {
                 // Handle primitive arrays by converting them to Object arrays
                 if (currentData instanceof int[]) {
                     this.data = Arrays.stream((int[]) currentData).boxed().toArray(Object[]::new);
+                } else if (currentData instanceof float[]) {
+                    float[] currentDataFloat = (float[]) currentData;
+                    this.data = IntStream.range(0, (currentDataFloat.length))
+                            .mapToDouble(i -> currentDataFloat[i]).boxed().toArray(Object[]::new);
                 } else if (currentData instanceof double[]) {
                     this.data = Arrays.stream((double[]) currentData).boxed().toArray(Object[]::new);
                 } else if (currentData instanceof long[]) {
