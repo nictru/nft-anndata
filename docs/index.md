@@ -9,7 +9,7 @@ To start using the plugin please add it to your `nf-test.config` file:
 ```groovy title="nf-test.config"
 config {
     plugins {
-        load "nft-anndata@0.1.0"
+        load "nft-anndata@0.3.3"
     }
 }
 ```
