@@ -37,8 +37,8 @@ nextflow_process {
                 assert "n_cells" in var.colnames
                 assert "PCNA" in var.rownames
 
-                assert "B cells" in obs.get("louvain").unique
-                assert !("B cell" in obs.get("louvain").unique)
+                assert "B cells" in obs.get("louvain").unique()
+                assert !("B cell" in obs.get("louvain").unique())
 
                 assert obs.get("n_genes").data.every { it >= 100 }
                 assert obs.get("percent_mito").data.every { it < 0.5 }
