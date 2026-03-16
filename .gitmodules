@@ -1,0 +1,3 @@
+[submodule "deps/nf-anndata"]
+	path = deps/nf-anndata
+	url = git@github.com:nictru/nf-anndata.git
