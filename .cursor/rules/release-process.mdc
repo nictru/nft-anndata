@@ -1,0 +1,33 @@
+---
+description: Steps for creating a new release of nft-anndata
+globs: pom.xml,CHANGELOG.md,src/main/resources/META-INF/nf-test-plugin,docs/index.md
+alwaysApply: false
+---
+
+# Release Process
+
+nft-anndata is a lightweight wrapper around nf-anndata. It is always released **after** a corresponding nf-anndata release. The version numbers should stay in sync.
+
+When the user asks to create a new release, confirm which nf-anndata version this release tracks if not already clear.
+
+## Files to update
+
+1. **`CHANGELOG.md`** — add a new versioned section referencing the nf-anndata release; leave `## [Unreleased]` empty above it
+
+2. **Run `bump-version.sh`** — handles all other version references in one step:
+   ```bash
+   ./bump-version.sh <version>
+   ```
+   This updates `pom.xml`, `src/main/resources/META-INF/nf-test-plugin`, `docs/index.md`, and runs `mvn package`.
+
+## CHANGELOG section format
+
+Since nft-anndata has no independent changes, the entry just references the corresponding nf-anndata release:
+
+```markdown
+## [Unreleased]
+
+## [X.Y.Z] - YYYY-MM-DD
+
+- Bump to nf-anndata [X.Y.Z](https://github.com/nictru/nf-anndata/releases/tag/vX.Y.Z)
+```
