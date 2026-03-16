@@ -1,4 +1,4 @@
-package nictru.nf.test.anndata;
+package nictru.nf.anndata;
 import java.nio.file.Path;
 
 /*
