@@ -4,7 +4,7 @@
   <groupId>com.nictru</groupId>
   <artifactId>nft-anndata</artifactId>
   <name>nft-anndata</name>
-  <version>0.3.3</version>
+  <version>0.3.4</version>
   <description>nf-test plugin for the AnnData file format</description>
   <url>https://github.com/nictru/nft-anndata</url>
   <licenses>
