@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.3.5] - 2026-03-23
+
+- Fix chunked HDF5 dataset support by compiling against the patched jhdf fork from [nf-anndata](https://github.com/nictru/nf-anndata) instead of upstream `io.jhdf:jhdf:0.9.2`
+- This fixes loading of R-generated h5ad files (e.g. decontX output) which use chunked storage with byte-shuffle compression
+
 ## [0.3.4] - 2026-03-17
 
 - Bump to nf-anndata [0.3.4](https://github.com/nictru/nf-anndata/releases/tag/v0.3.4)
