@@ -10,6 +10,15 @@ nft-anndata is a lightweight wrapper around nf-anndata. It is always released **
 
 When the user asks to create a new release, confirm which nf-anndata version this release tracks if not already clear.
 
+## Before releasing — update submodule
+
+Update the nf-anndata submodule pointer to the target release commit (which also pulls in the latest patched jhdf via the nested submodule):
+
+```bash
+cd deps/nf-anndata && git fetch origin main && git checkout main && git pull && cd ../..
+git add deps/nf-anndata
+```
+
 ## Files to update
 
 1. **`CHANGELOG.md`** — add a new versioned section referencing the nf-anndata release; leave `## [Unreleased]` empty above it
