@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-03-23
+
+- Bump to nf-anndata [0.4.0](https://github.com/nictru/nf-anndata/releases/tag/v0.4.0)
+
 ## [0.3.5] - 2026-03-23
 
 - Fix chunked HDF5 dataset support by compiling against the patched jhdf fork from [nf-anndata](https://github.com/nictru/nf-anndata) instead of upstream `io.jhdf:jhdf:0.9.2`
