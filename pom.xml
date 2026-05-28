@@ -5,7 +5,7 @@
 
 	<groupId>com.nictru</groupId>
 	<artifactId>nft-anndata</artifactId>
-	<version>0.4.1</version>
+	<version>0.5.0</version>
 	<packaging>jar</packaging>
 
 	<name>nft-anndata</name>
@@ -27,7 +27,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
