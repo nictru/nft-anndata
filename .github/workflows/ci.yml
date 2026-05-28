@@ -31,6 +31,8 @@ jobs:
 
       - name: Install nf-test
         uses: nf-core/setup-nf-test@v1
+        with:
+          version: "0.9.5"
       
       - name: Build plugin
         run: ./build.sh
