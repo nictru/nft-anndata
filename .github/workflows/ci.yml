@@ -43,7 +43,7 @@ jobs:
           ./test.sh
 
       - name: Upload jar
-        if: matrix.JAVA_VERSION == '11'
+        if: matrix.JAVA_VERSION == '17'
         uses: actions/upload-artifact@v4
         with:
           name: jar

@@ -20,7 +20,7 @@ nextflow_process {
 
         then {
             def filename = process.out.h5ad.get(0)
-            def obs_cols = ['louvain', 'n_counts', 'n_genes', 'percent_mito']
+            def obs_cols = ['n_genes', 'percent_mito', 'n_counts', 'louvain']
             with(anndata(filename)){
                 assert "counts" in layers
                 assert !("raw" in layers)
