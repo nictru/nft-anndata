@@ -5,7 +5,7 @@
 
 	<groupId>com.nictru</groupId>
 	<artifactId>nft-anndata</artifactId>
-	<version>0.5.0</version>
+	<version>0.5.1</version>
 	<packaging>jar</packaging>
 
 	<name>nft-anndata</name>
