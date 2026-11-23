@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.5.4] - 2026-11-23
+
+- Bump to nf-anndata [0.5.4](https://github.com/nictru/nf-anndata/releases/tag/v0.5.4)
+
 ## [0.5.3] - 2026-10-13
 
 - Bump to nf-anndata [0.5.3](https://github.com/nictru/nf-anndata/releases/tag/v0.5.3)
